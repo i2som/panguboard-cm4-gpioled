@@ -1,0 +1,49 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug CM4 ST-Link JTAG",
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"executable": "${workspaceFolder}/build-stm32/src/${config:I2SOM_STM32MP1.PROGRAM}",
+			"type": "cortex-debug",
+			"showDevDebugOutput": true,
+			"servertype": "openocd",
+			"runToEntryPoint": "main",
+			"preLaunchTask": "debug_pre",
+			"postDebugTask": "debug_post",
+			"numberOfProcessors": 2,
+			"overrideLaunchCommands": [
+				"-enable-pretty-printing",
+				"monitor soft_reset_halt",
+				"load"
+			],
+			"svdFile": "STM32MP15xxx.svd",
+			"configFiles": [
+				"${workspaceFolder}/utils/panguboard-stlink-jtag.cfg"
+			]
+		},
+		{
+			"name": "Debug CM4 STLink-SWD",
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"executable": "${workspaceFolder}/build-stm32/src/${config:I2SOM_STM32MP1.PROGRAM}",
+			"type": "cortex-debug",
+			"showDevDebugOutput": true,
+			"servertype": "openocd",
+			"runToEntryPoint": "main",
+			"preLaunchTask": "debug_pre",
+			"postDebugTask": "debug_post",
+			"numberOfProcessors": 2,
+			"overrideLaunchCommands": [
+				"-enable-pretty-printing",
+				"monitor soft_reset_halt",
+				"load"
+			],
+			"svdFile": "STM32MP15xxx.svd",
+			"configFiles": [
+				"${workspaceFolder}/utils/panguboard-stlink-swd.cfg"
+			]
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"I2SOM_STM32MP1": {
+		/* The target board ip address */
+		"TARGET_IP":"192.168.1.100",
+		"PROGRAM": "panguboard-cm4-gpioled.elf",
+
+		"ARCH":"arm-openstlinux_eglfs-linux-gnueabi",
+		"GCC_VERSION": "8.2.0",
+		"YOCTOSDK_PATH": "/opt/panguboard-qtsdk",
+		"TARGET_SYSROOT": "cortexa7t2hf-neon-vfpv4-openstlinux_eglfs-linux-gnueabi",
+		"HOST_SYSROOT": "x86_64-openstlinux_eglfs_sdk-linux",
+		"OECORE_NATIVE_SYSROOT": "${config:I2SOM_STM32MP1.YOCTOSDK_PATH}/sysroots/${config:I2SOM_STM32MP1.HOST_SYSROOT}",
+		"SDKTARGETSYSROOT": "${config:I2SOM_STM32MP1.YOCTOSDK_PATH}/sysroots/${config:I2SOM_STM32MP1.TARGET_SYSROOT}",
+	},
+	"cmake.sourceDirectory": "${workspaceFolder}/source",
+	"cortex-debug.openocdPath": "${config:I2SOM_STM32MP1.OECORE_NATIVE_SYSROOT}/usr/bin/openocd",
+	"cortex-debug.armToolchainPath.linux": "/usr/bin",
+	"cortex-debug.armToolchainPrefix": "arm-none-eabi",
+	"cortex-debug.gdbPath.linux": "${config:I2SOM_STM32MP1.OECORE_NATIVE_SYSROOT}/usr/share/gcc-arm-none-eabi/bin/arm-none-eabi-gdb"
+}

@@ -1,0 +1,54 @@
+{
+    // https://code.visualstudio.com/docs/editor/tasks
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            
+            /* download the package from github */
+            //"command": "SRC=src ${workspaceFolder}/build.sh",
+
+            /* set STM32CUBE_FW_MP1 use pre download package */
+            "command": "SRC=src STM32CUBE_FW_MP1=~/STM32Cube/Repository/STM32Cube_FW_MP1_V1.5.0 ${workspaceFolder}/build.sh",
+            
+            "group": {
+                "kind": "build",
+                "isDefault": true   
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "SRC=src DISTCLEAN=true ${workspaceFolder}/build.sh",
+            "group": { 
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "debug_pre",
+            "type": "shell",
+            "command": "${workspaceFolder}/utils/debug_prepost.sh",
+            "args": [
+                "pre",
+                "${config:I2SOM_STM32MP1.TARGET_IP}",
+                "${workspaceFolder}/build-stm32/src/${config:I2SOM_STM32MP1.PROGRAM}"
+            ]
+        },
+        {
+            "label": "debug_post",
+            "type": "shell",
+            "command": "${workspaceFolder}/utils/debug_prepost.sh",
+            "args": [
+                "post",
+                "${config:I2SOM_STM32MP1.TARGET_IP}",
+            ]
+        }
+
+    ]
+}
